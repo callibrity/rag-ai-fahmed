@@ -1,0 +1,1738 @@
+WEBVTT
+
+1
+00:00:03.410 --> 00:00:08.320
+Dillon Courts: Hello! This is going to serve as the case study for a mono.
+
+2
+00:00:08.730 --> 00:00:20.129
+Dillon Courts: I'm Dylan courts. I'm the platform engineering practice lead at caliberty and my role in this engagement was to kick it off for the first.st I don't know. 6 months to a year.
+
+3
+00:00:21.670 --> 00:00:23.800
+Dillon Courts: Alex, you want to introduce yourself quickly.
+
+4
+00:00:24.110 --> 00:00:26.286
+Alexander Meyer: Yup Alex Meyer
+
+5
+00:00:27.000 --> 00:00:32.459
+Alexander Meyer: I joined Amano, maybe about halfway through our tenure there in total
+
+6
+00:00:34.050 --> 00:00:42.999
+Alexander Meyer: Eventually my role became one of their tech team leads. We had multiple teams. And
+
+7
+00:00:43.370 --> 00:00:48.799
+Alexander Meyer: if I had to say, specifically owning their one of their edge devices.
+
+8
+00:00:48.950 --> 00:00:52.170
+Alexander Meyer: specifically, hotel interface, and we can dive into that later.
+
+9
+00:00:53.240 --> 00:00:55.180
+Dillon Courts: That's helps Nick.
+
+10
+00:00:59.470 --> 00:01:00.300
+Nik Smirnov: Let's check.
+
+11
+00:01:00.300 --> 00:01:01.309
+Tim Grannen: Can't hear you.
+
+12
+00:01:01.470 --> 00:01:02.649
+Nik Smirnov: Okay, that's what I thought.
+
+13
+00:01:02.650 --> 00:01:03.440
+Tim Grannen: There you go!
+
+14
+00:01:03.440 --> 00:01:04.759
+Nik Smirnov: Oh, is that what it is?
+
+15
+00:01:05.450 --> 00:01:06.160
+Nik Smirnov: Oh, cool!
+
+16
+00:01:08.610 --> 00:01:09.220
+Nik Smirnov: So.
+
+17
+00:01:09.220 --> 00:01:09.549
+Dillon Courts: Kind of.
+
+18
+00:01:09.550 --> 00:01:10.839
+Tim Grannen: Breaking up. Really bad. There.
+
+19
+00:01:11.860 --> 00:01:13.279
+Nik Smirnov: It's what it's.
+
+20
+00:01:13.600 --> 00:01:16.170
+Dillon Courts: Let's skip you while you figure it out. Tim.
+
+21
+00:01:16.490 --> 00:01:16.854
+Tim Grannen: Sure.
+
+22
+00:01:17.832 --> 00:01:24.179
+Tim Grannen: Yeah, Tim Grannon, software developer. I joined a Mono, I think, about a year into the contract.
+
+23
+00:01:24.420 --> 00:01:30.700
+Tim Grannen: did a lot of different implementations of device features, front, end features.
+
+24
+00:01:30.830 --> 00:01:36.020
+Tim Grannen: and then served as kind of their I don't know architect.
+
+25
+00:01:36.140 --> 00:01:42.539
+Tim Grannen: team, and advisory roles there, doing a lot of their design and implementation.
+
+26
+00:01:43.430 --> 00:01:45.019
+Dillon Courts: Great next time Ben.
+
+27
+00:01:45.800 --> 00:01:51.059
+Ben Hulshult: Hey? Ben Hoschelt, I've been on it. Still on it about 3 years or so.
+
+28
+00:01:51.625 --> 00:01:55.760
+Ben Hulshult: Was initially brought in to do some Api stuff got into the front end
+
+29
+00:01:56.010 --> 00:02:01.779
+Ben Hulshult: mostly. Then he wants to go switch to the architecture team. So doing that currently.
+
+30
+00:02:03.190 --> 00:02:08.900
+Dillon Courts: Great thanks, Ben Nick, back to you.
+
+31
+00:02:10.190 --> 00:02:12.000
+Nikolai Smirnov: Is this any better guys.
+
+32
+00:02:12.000 --> 00:02:12.890
+Dillon Courts: Much better.
+
+33
+00:02:13.070 --> 00:02:34.449
+Nikolai Smirnov: Okay, cool. Nick Smirnoff. I'm a product consultant here with caliberty. I was originally brought in around the same time Alex was to the Amano project acting as a product owner from master hybrid role. In the teams. I believe, across 3 or 4 teams at 1 point.
+
+34
+00:02:35.590 --> 00:02:36.949
+Dillon Courts: Great thanks, Nick.
+
+35
+00:02:37.730 --> 00:02:54.569
+Dillon Courts: Alright. So I'm gonna attempt to summarize what Amano is and like how we got this project in the 1st place. So Amano is a huge conglomerate based out of Japan. They have a subsidiary Amano Mcgann, who operates in the United States.
+
+36
+00:02:54.850 --> 00:03:02.720
+Dillon Courts: and Amana Mcgann owned a company called Cvps, which I believe stands for creating vision and parking systems.
+
+37
+00:03:03.000 --> 00:03:16.839
+Dillon Courts: So we originally started this engagement through a relationship one of our sales executives, Keith Cannell had with one of the sales executives for the Cvps product. I believe his name was John Daniels.
+
+38
+00:03:17.060 --> 00:03:27.699
+Dillon Courts: and they were completely reimagining their parking solution. The previous parking solution was based on it was very hardware based, and
+
+39
+00:03:28.770 --> 00:03:36.570
+Dillon Courts: anytime changes needed to be made or up or updates needed to be done to the firmware, like a technician, had to go and open up a box and
+
+40
+00:03:36.760 --> 00:03:42.030
+Dillon Courts: either swap out a part or run a firmware upgrade, and they had very low visibility into
+
+41
+00:03:42.200 --> 00:03:51.380
+Dillon Courts: well, how those machines were actually operating. And so the Cvps team took it upon themselves to try to build like a prototype
+
+42
+00:03:51.530 --> 00:04:00.319
+Dillon Courts: that they called aria as a replacement, and that prototype was gonna have, like a windows, tablet inside of it, and
+
+43
+00:04:00.990 --> 00:04:05.499
+Dillon Courts: it had, like all of its sensory and like external
+
+44
+00:04:05.660 --> 00:04:17.130
+Dillon Courts: stuff, like, for example, like license plate reading or cash dispenser, or like credit card reading. We're all like plug and play modules that plugged into the windows tablet and interfaced that way.
+
+45
+00:04:17.250 --> 00:04:41.409
+Dillon Courts: They did an admirable job getting to a proof of concept place, but it was all written by someone who didn't have any kind of classical training and software development. So it it wasn't scalable. It was a bit of spaghetti, for sure. There were a lot of like global variables all over the place, and it was just not going to be maintainable long time, long term or scale into a product that they could release.
+
+46
+00:04:42.350 --> 00:04:48.159
+Dillon Courts: So they brought caliberty in to help them assess that, and
+
+47
+00:04:48.610 --> 00:04:56.989
+Dillon Courts: we were able to do a little bit of discovery work, and we recommended to them that they needed to rebuild this thing from scratch.
+
+48
+00:04:57.370 --> 00:05:11.749
+Dillon Courts: And so we stood up a team of I think it was between 6 and 8 folks or so. I specifically played more of a role on what our cloud infrastructure and cloud architecture was going to look like. And we had some other individuals who focused more on the
+
+49
+00:05:12.510 --> 00:05:21.499
+Dillon Courts: actual like client device, side of things. But we did. A new proof of concept where we were able to show like a
+
+50
+00:05:21.980 --> 00:05:30.730
+Dillon Courts: car could come in could go through the the system. They could ask for a ticket they could. The arm would go up they could pay that ticket.
+
+51
+00:05:31.050 --> 00:05:39.329
+Dillon Courts: and this rework got the attention of the parent company among them again, and eventually got the attention of the
+
+52
+00:05:39.590 --> 00:05:42.869
+Dillon Courts: parent parent company, Amano out of Japan.
+
+53
+00:05:43.010 --> 00:05:50.010
+Dillon Courts: and we actually ended up hosting some representatives from the Japan team in the Equilibrity Office
+
+54
+00:05:50.150 --> 00:05:53.720
+Dillon Courts: about I don't know, probably 3 months into the project.
+
+55
+00:05:54.080 --> 00:05:58.749
+Dillon Courts: and they wanted to see what our prototype looked like, what our vision was for the architecture.
+
+56
+00:05:59.070 --> 00:06:01.859
+Dillon Courts: and basically just how things were progressing.
+
+57
+00:06:02.140 --> 00:06:25.969
+Dillon Courts: That conversation went very well, and Amano pretty quickly realized like, Hey, this is, I think, the future of this product and the future of this particular division of our organization, and we want to invest more heavily in this, and we're going to bring the entire operation in house. So caliberty doesn't just own it holistically. We want more ownership over it. And to be more involved. So at that point
+
+58
+00:06:26.340 --> 00:06:34.849
+Dillon Courts: I was playing more of an architecture role. So I rolled off, and they brought in some in-house architects. Take over that responsibility. And
+
+59
+00:06:35.080 --> 00:06:39.239
+Dillon Courts: we also transition some of our team off at that point.
+
+60
+00:06:39.720 --> 00:06:49.549
+Dillon Courts: and some of the rest of the team started taking over. So I'm gonna stop there. Is there anybody anybody else wants to add about
+
+61
+00:06:49.920 --> 00:06:53.739
+Dillon Courts: any of that or any other context or thoughts?
+
+62
+00:06:55.620 --> 00:06:59.229
+Dillon Courts: Okay, so I'll turn it over to one of you guys to maybe go over.
+
+63
+00:07:00.300 --> 00:07:06.079
+Dillon Courts: I don't know what were what were some of the what some of the features and functionality that you all worked on
+
+64
+00:07:06.280 --> 00:07:08.699
+Dillon Courts: and delivered throughout your tenure. There.
+
+65
+00:07:09.970 --> 00:07:24.129
+Tim Grannen: Yeah, I can. I can go ahead and and do that. So there the platform that they and and Dylan mentioned brought in as okay. And now we're gonna do this whole thing to revamp our entire business strategy. Essentially, it was a
+
+66
+00:07:24.590 --> 00:07:42.310
+Tim Grannen: a real time parking management. Software. All cloud based. So they had a web front end that was used for basically parking facility management so they could configure who can come in and out of the garage. They could configure rates for the garage, etc.
+
+67
+00:07:42.755 --> 00:08:00.899
+Tim Grannen: Kind of different features. In that area. But then they also had the actual devices. So the devices were out in the field. They are the gates. They are credit card readers. They are cameras, they are door devices, hotel devices. Various different devices that are all operating
+
+68
+00:08:01.000 --> 00:08:03.980
+Tim Grannen: in the field, you know, in the actual facility.
+
+69
+00:08:04.280 --> 00:08:11.109
+Tim Grannen: So they had their cloud suite, which did like service their portal, but then they also had their
+
+70
+00:08:11.529 --> 00:08:34.640
+Tim Grannen: back end device Apis that the devices would reach out with, and they would do things of like making sure the ticket that they pull was persisted, and then telling them how much to to charge for that, or reading license plates or doing any other background processing of that. So as a general whole, architecture was basically the cloud and the web portal, as well as
+
+71
+00:08:34.700 --> 00:08:46.547
+Tim Grannen: the devices on Prem and at the at the facilities, and they what they would do from a business perspective is they, Ben can correct me if they change this
+
+72
+00:08:47.340 --> 00:08:56.789
+Tim Grannen: they were sold. This product to existing amano customers, and also new amano customers, and so they would sell them on the equipment
+
+73
+00:08:56.890 --> 00:09:23.600
+Tim Grannen: pretty much at flat cost, and maybe with a small monthly fee of maintenance, and so they charge a lot up front for the equipment. So they do. The you know, they have people come in and replace their old equipment with their new equipment, or sometimes they do in place upgrades where they just swap out some of the, you know, tech guts of their hardware and put them back in and connect them to the new suite. So that's kind of how they sold the new platform from their existing platform
+
+74
+00:09:23.880 --> 00:09:25.499
+Tim Grannen: to get those customers.
+
+75
+00:09:27.480 --> 00:09:30.820
+Tim Grannen: Alex, do you have anything else to add on top of that.
+
+76
+00:09:32.094 --> 00:09:35.605
+Alexander Meyer: I have stuff to add. I just don't know when it would make most sense.
+
+77
+00:09:36.515 --> 00:09:49.299
+Alexander Meyer: just because thinking of like from a technological standpoint like where I think we had huge milestones in terms of what we contributed to them. Because, as as Dylan, you mentioned, you know they
+
+78
+00:09:49.550 --> 00:09:54.689
+Alexander Meyer: owned the product. They brought in their own architects. They had their own dev team.
+
+79
+00:09:55.175 --> 00:09:57.050
+Alexander Meyer: But for a long time
+
+80
+00:09:57.657 --> 00:10:05.989
+Alexander Meyer: really, until I think it boiled down to just Ben being there, we still owned a lot of the decision making at least as far as implementation went.
+
+81
+00:10:07.026 --> 00:10:16.209
+Alexander Meyer: So a lot of those milestones. At least that happened while I was there, that I might call out would be the the state machine. Rewrite, Tim, that you did
+
+82
+00:10:17.290 --> 00:10:18.790
+Alexander Meyer: huge technological.
+
+83
+00:10:20.444 --> 00:10:25.290
+Alexander Meyer: project, I would argue. Went from configuring it through
+
+84
+00:10:26.084 --> 00:10:34.280
+Alexander Meyer: text files to being code first.st strongly typed like state machine.
+
+85
+00:10:35.162 --> 00:10:37.178
+Alexander Meyer: So pretty impressive
+
+86
+00:10:38.340 --> 00:10:45.110
+Alexander Meyer: something that I I guess I don't know when this was put in place, but I believe it was us their whole
+
+87
+00:10:45.310 --> 00:10:47.598
+Alexander Meyer: build and release pipeline.
+
+88
+00:10:48.310 --> 00:11:15.960
+Alexander Meyer: you know we take that for granted these days. It's just expected, but I would say a mono is on a wholly different level, being a microservices architecture inside a mono repo. You know the yamls were pretty intense, but once it's up and running, I mean, it was a pretty seamless experience to make a change to a single service, and only see a 10 second build instead of a 5 min. Build the entire repository. So pretty impressive.
+
+89
+00:11:16.806 --> 00:11:29.823
+Alexander Meyer: As I mentioned earlier with the hotel interface, I think we were very much the driving force behind all their edge, computing. We created a door device, a hotel interface.
+
+90
+00:11:31.100 --> 00:11:41.200
+Alexander Meyer: as well as just general architecture around future edge devices period and having kind of this different backbone for bare metal versus
+
+91
+00:11:41.920 --> 00:11:47.819
+Alexander Meyer: These edge edge devices that we could bolt on pretty cool stuff.
+
+92
+00:11:48.620 --> 00:11:49.290
+Tim Grannen: And.
+
+93
+00:11:49.490 --> 00:11:52.440
+Dillon Courts: Getting into the specifics of those devices. I mean, it's kind of.
+
+94
+00:11:52.840 --> 00:12:14.440
+Tim Grannen: They spent a lot of time working with their devices. Not all of it was probably well invested by them. They rolled a lot of their own update mechanisms. And we contributed to 95% of those limitations and those features. But you know, we wrote update things, monitors, we wrote several different implementations of like
+
+95
+00:12:14.570 --> 00:12:27.889
+Tim Grannen: dynamic script deployment to the edge devices. So you could execute scripts to, you know, update versions of things for security patches on the hardware OS. Rather than you know, having to have someone go and touch it.
+
+96
+00:12:28.030 --> 00:12:44.379
+Tim Grannen: So they rolled a lot of their own stuff in that way, and that probably hindered them a little bit from being able to deliver more instead of using a you know, off the shelf platform to manage custom code and deploy it. But we did do that as well. So we had an entire
+
+97
+00:12:44.510 --> 00:12:59.450
+Tim Grannen: release cycle for the devices specifically where you know you push it out. It would tell all devices. There's been an update. All the devices would then eventually request, Hey, I need to download the new artifacts and update them locally through that process.
+
+98
+00:13:00.590 --> 00:13:27.610
+Alexander Meyer: Thinking about them, rolling their own systems to feature flagging is a huge call out, you know, we started with 3rd party, you know, that's what we suggested to them. That's what I would still suggest to all of our clients. They didn't like it eventually asking us to roll a custom implementation of a feature flagging framework. I think we gave them a good product, but is, you know, took 3 to 6 months to implement what
+
+99
+00:13:27.860 --> 00:13:30.878
+Alexander Meyer: they were already paying for sadly. But
+
+100
+00:13:31.310 --> 00:13:32.149
+Tim Grannen: Yeah, and they.
+
+101
+00:13:32.150 --> 00:13:32.810
+Alexander Meyer: Hold on!
+
+102
+00:13:33.100 --> 00:13:37.520
+Tim Grannen: From a from a business perspective on that one. They wanted to be able to
+
+103
+00:13:38.130 --> 00:13:51.400
+Tim Grannen: kind of tightly managed features in terms of billing, so they wanted to have a way to give people certain levels of access to say, Okay, if you get if you buy this level of access, you get these features and use feature flagging to be able to do that
+
+104
+00:13:51.630 --> 00:13:53.659
+Tim Grannen: because they rolled their own.
+
+105
+00:13:53.900 --> 00:13:55.630
+Tim Grannen: And that's what they wanted to do.
+
+106
+00:13:56.340 --> 00:13:59.979
+Tim Grannen: Never got there like we were able to deliver the fact that you could
+
+107
+00:14:00.120 --> 00:14:09.559
+Tim Grannen: turn on feature flags in the web portal as well as at device level. So you could very specifically go this, I want these, this device, or this set of devices to
+
+108
+00:14:09.720 --> 00:14:11.550
+Tim Grannen: turn on whatever feature.
+
+109
+00:14:12.080 --> 00:14:22.200
+Tim Grannen: but they never tied that back to their business value of. Okay. Well, now, I want to charge for these certain features. At least they haven't yet, and I doubt that that's a high priority for them at this point.
+
+110
+00:14:22.789 --> 00:14:29.149
+Tim Grannen: But that that was a reason to for them to do that. We did propose using 3rd party off the shelf products.
+
+111
+00:14:29.370 --> 00:14:32.230
+Tim Grannen: and they didn't want to pay for them, so.
+
+112
+00:14:32.230 --> 00:14:44.610
+Alexander Meyer: I I think it really just boiled down to. There was a way to do it with launchdarkly but they would have had to pay a lot more to access the Apis to build at the end of the day. They wanted their own ui to swap the flags.
+
+113
+00:14:44.680 --> 00:15:08.830
+Alexander Meyer: Yeah, because of the billing structure. They want their salespeople to go in and say, this customer bought this which is totally doable, and launch darkly and other frameworks. Just it's another another tier of purchase they want to build their own. But I don't think it was any failure that it never got to that point. It was just at that point, business prioritization other things took precedent.
+
+114
+00:15:12.760 --> 00:15:20.830
+Dillon Courts: So, taking a step back about and looking at like our role on this engagement, like, how would you describe
+
+115
+00:15:21.420 --> 00:15:22.370
+Dillon Courts: our role.
+
+116
+00:15:24.490 --> 00:15:25.720
+Alexander Meyer: Technical leaders.
+
+117
+00:15:26.530 --> 00:15:30.319
+Tim Grannen: Yeah, I would say, cornerstone
+
+118
+00:15:30.680 --> 00:15:42.050
+Tim Grannen: cornerstone pieces of the team like there were while I was there. It was me and Cody for a long time kind of pulling down the ford of team one, which is the architecture, lead team, infrastructure team
+
+119
+00:15:43.370 --> 00:15:52.989
+Tim Grannen: and they they would have us design and redesign whole features, whole parts of the system whole. You know the whole up like we wrote that update for the device thing twice.
+
+120
+00:15:53.100 --> 00:15:57.969
+Tim Grannen: because they realized they wanted to do a docker the second time, and we had to start from scratch.
+
+121
+00:15:58.160 --> 00:16:28.020
+Tim Grannen: So without us. They they had some of that knowledge in house, but they didn't have the ability to deliver and to kind of do the right thing the 1st time rather than you know iterate and and fail. And so they really leaned on us to go. Okay, what? What do you guys think? What's the what's what's your right 1st decision? And and they leveraged us quite a bit. They also leverage us just to implement features. There were. Alex and Ben are both on feature teams.
+
+122
+00:16:28.390 --> 00:16:46.890
+Tim Grannen: and they were just given handed. Typically, after we've gone through design they would get, you know, I don't know 1520 stories of different things that touch in the device, and all that sort of stuff, and usually the Liberty developers would be leading those efforts, or, you know, implementing the most important parts of those features.
+
+123
+00:16:47.460 --> 00:16:54.632
+Nikolai Smirnov: Yeah, I would say, at the highest point of our engagement we had around 12 to 13 people
+
+124
+00:16:55.340 --> 00:16:57.920
+Nikolai Smirnov: across 3 different teams.
+
+125
+00:16:58.365 --> 00:17:17.900
+Nikolai Smirnov: As Tim and Alex very kind of mentioned the team, one, the infrastructure architecture team where Cody and Tim kind of led the decision making there and then the other 2 teams which were primarily focused around feature implementation. I believe there was even plans to expand to a 4th team
+
+126
+00:17:18.342 --> 00:17:34.800
+Nikolai Smirnov: which would handle like database api data feeds, reporting things like that. I don't know if it ever actually happened or not, because I know the priorities shifted at 1 point and budget changed from like the parent company.
+
+127
+00:17:35.429 --> 00:17:45.319
+Nikolai Smirnov: But that was kind of the goal was to expand to a 4th team, to, and that would require additional dev resources from us. So they were planning to get
+
+128
+00:17:45.340 --> 00:18:13.070
+Nikolai Smirnov: a couple more devs, a couple more qi resources which I know Sarah's not on the call here right now. She was brought in to help out clean up some of the quality assurance side of the house. She was a big piece in regards to kind of establishing some best practices, and really re-educating the I think they were called S stats, from the amano side. On
+
+129
+00:18:13.100 --> 00:18:18.269
+Nikolai Smirnov: proper testing techniques, proper ways of testing and and validating things like that.
+
+130
+00:18:21.030 --> 00:18:30.009
+Dillon Courts: So why, why were? Why was a mono lacking in in skill sets like, what? What did we bring to the table that they didn't have. And why didn't they have that? Do you feel like.
+
+131
+00:18:31.280 --> 00:18:35.790
+Alexander Meyer: I think the why boils down to just recruiting and hiring.
+
+132
+00:18:36.738 --> 00:18:41.660
+Alexander Meyer: I felt like that became more evident. Actually near the end of our contract when
+
+133
+00:18:41.940 --> 00:18:50.429
+Alexander Meyer: they were really trying to own their pieces. They'd bring in some folks not bad people by any stretch. Don't get me wrong, but
+
+134
+00:18:50.920 --> 00:19:03.888
+Alexander Meyer: it's a complicated system. I mean, it interfaces with a lot of things as mentioned earlier. It's it was micro services, I think, by the time we left there was like 13 or 14 different services, unique services.
+
+135
+00:19:04.430 --> 00:19:11.399
+Alexander Meyer: and it can be hard to grasp how everything works. And, generally speaking, how they structured their teams
+
+136
+00:19:11.550 --> 00:19:16.429
+Alexander Meyer: was Jack of all trades, every team kind of touches on everything.
+
+137
+00:19:17.068 --> 00:19:20.819
+Alexander Meyer: Not bad by itself, but they're individual developers
+
+138
+00:19:21.140 --> 00:19:25.250
+Alexander Meyer: were were siloed themselves in terms of technical skills.
+
+139
+00:19:25.803 --> 00:19:31.330
+Alexander Meyer: You generally had some folks that only worked on Front end. You had some folks that only worked on back end.
+
+140
+00:19:33.190 --> 00:19:42.209
+Alexander Meyer: you also kind of had people that eventually got pigeonholed in the sense of specific areas of the system, too, like only working on the device or only working on the website.
+
+141
+00:19:43.508 --> 00:19:47.780
+Alexander Meyer: None of that is bad by itself. It's just corporate goals didn't align.
+
+142
+00:19:48.469 --> 00:19:52.380
+Alexander Meyer: They tried to have everyone and every team be a jack of all trades.
+
+143
+00:19:52.970 --> 00:19:57.797
+Alexander Meyer: but I feel like no one, except for the caliberity developers were
+
+144
+00:19:59.030 --> 00:20:02.944
+Alexander Meyer: and not by any any specific design. I think it's just.
+
+145
+00:20:03.660 --> 00:20:10.891
+Alexander Meyer: we had a bit more experience. I mean, if anything, too, we I mean we built the system so I would hope we know all of it.
+
+146
+00:20:11.550 --> 00:20:18.160
+Alexander Meyer: but they just never were able to get their caliber of recruitment. I think up high enough outside of their immediate architects.
+
+147
+00:20:20.540 --> 00:20:21.240
+Tim Grannen: Yeah, I'd be.
+
+148
+00:20:21.240 --> 00:20:21.770
+Tim Grannen: I
+
+149
+00:20:21.900 --> 00:20:33.700
+Tim Grannen: I also think the system design didn't help them in that way like it. It was a microservices architecture where they had. I don't know 15 or 20 services by the time I had left.
+
+150
+00:20:33.820 --> 00:20:43.360
+Tim Grannen: And most of them are. There's there's a couple that are like handle 85 90% of the traffic. And then there's everything else is kind of ancillary.
+
+151
+00:20:43.600 --> 00:20:47.169
+Tim Grannen: and so kind of looking at that as a developer is pretty daunting
+
+152
+00:20:47.570 --> 00:20:53.459
+Tim Grannen: and picking all that stuff up and remembering nuances from other projects and upgrades and different stuff.
+
+153
+00:20:53.670 --> 00:21:14.809
+Tim Grannen: It it is a challenge. So I think, that didn't help them. Also, as Alex had mentioned that the approach of the team of well, you can touch everything means that everyone is constantly relearning everything. So if you know, I made a device update, you know, 2 months ago, and someone I worked with the device 6 months ago.
+
+154
+00:21:14.970 --> 00:21:20.059
+Tim Grannen: Now they have to relearn what I did to in scale, because they need to make a new touch. And it's different.
+
+155
+00:21:20.330 --> 00:21:40.040
+Tim Grannen: So it ends up just being a lot of learning and churn. I think we we had recommended them a couple of times to put people, hey, just focus on one area. So like, have this team be the the front end team. This team be like the device team where they can all focus and gain a lot of knowledge really quickly
+
+156
+00:21:40.340 --> 00:21:59.739
+Tim Grannen: in that area. They push back on that and and chose not to do it because they wanted they didn't want people sitting idle. If they didn't have work for that particular area of the system. At 1 point I don't know if that ever would have actually happened, because it seems like most of their features, touched a lot of the system, anyway.
+
+157
+00:22:00.462 --> 00:22:10.029
+Tim Grannen: But because we had chosen like a more micro services distributed architecture they they went with, oh, well, you gotta know everything. I think
+
+158
+00:22:10.520 --> 00:22:14.029
+Tim Grannen: it would have served them better to either have featured like.
+
+159
+00:22:14.350 --> 00:22:17.069
+Tim Grannen: so areas of the system teams or
+
+160
+00:22:17.760 --> 00:22:23.879
+Tim Grannen: reshape the architecture so that way it's more monolithic. And so it's easier to understand as a whole.
+
+161
+00:22:24.330 --> 00:22:27.269
+Tim Grannen: but obviously with devices. It's kind of hard to do that. But.
+
+162
+00:22:27.830 --> 00:22:35.930
+Alexander Meyer: And even just thinking about the root of the project. The the technical complexity, I would say, is higher than anything I've worked on at caliberity.
+
+163
+00:22:36.616 --> 00:22:38.519
+Alexander Meyer: Because of the scalability.
+
+164
+00:22:40.170 --> 00:22:48.370
+Alexander Meyer: Like their website by itself. Not very complicated, but the stateful store behind it, because there was so much data
+
+165
+00:22:48.811 --> 00:22:58.418
+Alexander Meyer: was fairly complicated and hard to work with. I don't. I don't actually think anyone other than their architect on their side actually understood how their react. Redux
+
+166
+00:22:58.980 --> 00:23:09.683
+Alexander Meyer: stateful store actually worked. It was complicated. It was big and then even on the on the device side, I mean the the we mentioned the stateful engine
+
+167
+00:23:10.490 --> 00:23:24.442
+Alexander Meyer: for the parking kiosk. You might not think about it, but I mean, there's probably 10 unique, different screens that pop up. But each one of those screens might have 10 different states it could be in, and how it can move and
+
+168
+00:23:25.830 --> 00:23:38.697
+Alexander Meyer: I guess I don't know technically who all contributed to it. But I I felt like that was only caliberty developers, and it was complicated on its own. And again, if you're just not in it day to day. They're not gonna pick it up, and they never did
+
+169
+00:23:40.730 --> 00:23:46.450
+Tim Grannen: Yeah. One thing we did add that they were lacking originally, was
+
+170
+00:23:46.980 --> 00:24:06.209
+Tim Grannen: in our 1st implementation after, you know, cbps, then aria we had the device, and we were. They were making a lot of iteration on device. However, all of it was, you had to physically connect to the hardware. There was no way to run it without the hardware. And so anytime you wanted to troubleshoot something you had to plug in.
+
+171
+00:24:06.370 --> 00:24:14.129
+Tim Grannen: and that was a limiting factor on who could develop and how fast they could develop, because they need to be in the office. They need to be plugged in
+
+172
+00:24:14.400 --> 00:24:22.150
+Tim Grannen: and to to test anything. So one of the things we did was kind of abstract away the actual device
+
+173
+00:24:22.300 --> 00:24:25.760
+Tim Grannen: and introduce a simulator so that way we could have
+
+174
+00:24:26.030 --> 00:24:29.800
+Tim Grannen: at least a basically an emulator of the device.
+
+175
+00:24:30.050 --> 00:24:50.460
+Tim Grannen: And that way you could run all of your business code that handled all of the payments and all of that sort of stuff and the screen transitions without the actual device. That was not something that they really prioritized. But we felt it was a very important feature that needed to be added. And then once they saw like a working prototype, they were like, Okay, we gotta. We gotta have this because
+
+176
+00:24:50.894 --> 00:24:55.289
+Tim Grannen: they they saw the value in it. They even wanted to go as far as
+
+177
+00:24:55.400 --> 00:25:07.429
+Tim Grannen: getting a testable version inside of a pipeline so that way they could write end to end tests with. The cloud stood up, and a device where multiple devices running in the cloud. Never got that far that wasn't prioritized.
+
+178
+00:25:07.930 --> 00:25:14.999
+Tim Grannen: but that is something that we did for them that they probably would not have done. They would have just kept plugging away the device with hardware.
+
+179
+00:25:15.160 --> 00:25:20.780
+Alexander Meyer: I I almost forgot about that. I would actually say that was our biggest win at at Amano was the simulator.
+
+180
+00:25:21.010 --> 00:25:26.079
+Alexander Meyer: I mean just the amount of throughput that it that it multiplied
+
+181
+00:25:26.310 --> 00:25:29.590
+Alexander Meyer: from a development standpoint. It's just immeasurable.
+
+182
+00:25:32.060 --> 00:25:33.470
+Dillon Courts: You guys built that from scratch.
+
+183
+00:25:33.750 --> 00:25:38.849
+Ben Hulshult: Tim did. Yeah. And it allowed them to hire people from not Minnesota, which they've done
+
+184
+00:25:39.310 --> 00:25:41.049
+Ben Hulshult: a lot more now. So.
+
+185
+00:25:41.050 --> 00:25:47.240
+Tim Grannen: Yeah, it it became an issue, because when I was hired on it was like middle of Covid Ish.
+
+186
+00:25:47.350 --> 00:25:55.889
+Tim Grannen: And so I was remote, not in Cincinnati, where all the other team had been, and they can have access to the device. So they were very handcuffed, and what they could give me
+
+187
+00:25:56.000 --> 00:25:58.650
+Tim Grannen: to actually work on because I didn't have a device.
+
+188
+00:25:58.900 --> 00:26:02.269
+Tim Grannen: So I was like, we need to take the initiative to actually
+
+189
+00:26:02.470 --> 00:26:07.350
+Tim Grannen: abstract some of the device away, so that way we can at least test it a little bit and simulate it better.
+
+190
+00:26:07.990 --> 00:26:08.530
+Dillon Courts: Great.
+
+191
+00:26:09.140 --> 00:26:31.879
+Dillon Courts: And one of the big reasons they needed us to is historically, they had developed more like embedded firmware type applications, right like they'd never developed a software as a service like Sas type solution or done anything in the cloud or anything like that. So those expertise were very necessary for them. In order to make this a success.
+
+192
+00:26:32.670 --> 00:26:36.270
+Tim Grannen: Yeah, their their developers, their architects, came from
+
+193
+00:26:36.400 --> 00:26:44.619
+Tim Grannen: doing that embedded programming. They also had a whole hardware team that still did some of that embedded programming for us to connect to certain like older equipment.
+
+194
+00:26:45.284 --> 00:27:08.269
+Tim Grannen: But all of their developers were seem like they came from a support background they didn't like just do development. It's more like they did support. And then they got into writing SQL. Queries, and so they could kind of figure out what's going on, and that's not a bad way to get in development. But it's not like a good foundation of knowledge and experience that you're looking for, and you're starting a new cloud. Fast platform.
+
+195
+00:27:08.510 --> 00:27:09.979
+Dillon Courts: So that's why we were important.
+
+196
+00:27:11.450 --> 00:27:15.610
+Dillon Courts: So we've we've touched on bits and pieces of this. Maybe we can sum it up
+
+197
+00:27:16.045 --> 00:27:20.400
+Dillon Courts: and the response, here, how do you feel like like what we built?
+
+198
+00:27:20.530 --> 00:27:27.050
+Dillon Courts: And some of these features like actually impacted Amanos customers, their business.
+
+199
+00:27:27.350 --> 00:27:31.880
+Dillon Courts: like all of that, like, what was the what would you say? The overall impact was? And maybe we can list off some things.
+
+200
+00:27:33.810 --> 00:27:37.040
+Alexander Meyer: And I, if I remember right, their own words
+
+201
+00:27:37.140 --> 00:27:40.830
+Alexander Meyer: was that once they demoed this at a convention.
+
+202
+00:27:41.000 --> 00:27:45.089
+Alexander Meyer: people were saying, this would turn like the parking garage industry on its head.
+
+203
+00:27:47.010 --> 00:28:06.739
+Alexander Meyer: I obviously don't have insight into the parking garage industry. But I can understand where they're coming from, just in the sense of like what I saw like I could manage a parking garage from my my home office like that's how, in depth of a system that I think we built now again, hand in hand with them. It's not just us right. But
+
+204
+00:28:07.010 --> 00:28:10.820
+Alexander Meyer: it's hard to say. The success they would have had without us.
+
+205
+00:28:11.320 --> 00:28:28.689
+Alexander Meyer: but knowing that we were there, and seeing, I think, the skill gap between developers, and I hate to say that because I hate to say anything bad about our customers but it but it was fairly obvious here the skill gap between their customers. I don't see how they could have ever gone to market at the time they did without our help.
+
+206
+00:28:29.580 --> 00:28:33.289
+Alexander Meyer: I mean, I think we brought them to market years ahead of expectations.
+
+207
+00:28:34.450 --> 00:28:36.339
+Tim Grannen: Yeah. And they they really
+
+208
+00:28:36.820 --> 00:28:46.689
+Tim Grannen: push the fact like we were pushing out like seemed like pretty standard features for a parking garage. But the fact that it was implemented in a web accessible, remote.
+
+209
+00:28:47.050 --> 00:28:51.750
+Tim Grannen: you know, form factor as well as real time updates kind of change their
+
+210
+00:28:52.140 --> 00:29:07.319
+Tim Grannen: the whole business and say they could, okay, now, like we're ahead of the curve. Rather it seemed like they might have been behind the curve before. They they sold. I don't. Ben could look at how many facilities they have now. They probably have 100 200 facilities in the system. I mean all they're all.
+
+211
+00:29:07.580 --> 00:29:10.163
+Tim Grannen: Some of them are bigger, some of the like.
+
+212
+00:29:10.560 --> 00:29:19.890
+Tim Grannen: in Chicago. It's a soldier, fields all the parking for soldier fields in there. They have a couple of universities that all the parking goes through that system.
+
+213
+00:29:20.534 --> 00:29:32.789
+Tim Grannen: Then port of Galveston, a big cruise ship parking area. I'll go through there. So it's it's a lot of traffic. And yeah, they get. They get paid by the the installation and service fees, I guess. But
+
+214
+00:29:33.445 --> 00:29:40.599
+Tim Grannen: you know, it seems like it. It took off once they actually started getting stuff in production and and getting features solidified.
+
+215
+00:29:41.070 --> 00:30:03.849
+Nikolai Smirnov: And kind of add to Tim's point with a lot of those new sales. Some of those contracts, were based on new feature functionality that we they depended on us to complete by specific dates. So like soldier Field, I remember, was a big one for them that they basically locked in a contract with a target date.
+
+216
+00:30:03.950 --> 00:30:13.441
+Nikolai Smirnov: and then came to us saying, Hey, we need this with these features, but X date which there more more on that later in this call. But
+
+217
+00:30:14.050 --> 00:30:28.410
+Nikolai Smirnov: without our team being there to, you know, help get those features across the finish line. That sale with fallen through. And that's just one big example. Amongst many. So.
+
+218
+00:30:30.230 --> 00:30:37.039
+Dillon Courts: Do we have any data numbers around like how much sales increased with this new product.
+
+219
+00:30:38.170 --> 00:30:51.490
+Dillon Courts: How much I don't know was saved on operational costs. Because, like you guys were saying, you could do over the air updates. And you could run things from your home office if you wanted to like we have any data on any of that.
+
+220
+00:30:52.070 --> 00:31:00.760
+Alexander Meyer: I'd have to do a slack, deep dive, but I know, I think, as I was leaving the contract I posted something about performance metrics.
+
+221
+00:31:01.470 --> 00:31:02.770
+Alexander Meyer: Does that ring a bell?
+
+222
+00:31:03.370 --> 00:31:04.500
+Alexander Meyer: Tim or Ben.
+
+223
+00:31:05.310 --> 00:31:09.709
+Dillon Courts: Or like through put, would be interesting, like, you guys mentioned, like, you have all these different
+
+224
+00:31:10.380 --> 00:31:13.629
+Dillon Courts: sites like, how much traffic are you getting regularly.
+
+225
+00:31:13.830 --> 00:31:15.379
+Tim Grannen: I mean. I I know
+
+226
+00:31:15.740 --> 00:31:28.119
+Tim Grannen: anecdotally. I remember some conversations that we had of like some airports that would push through like $100,000 worth of parking fees in a day through the system at just one lot, or something like that. And they had
+
+227
+00:31:28.310 --> 00:31:34.430
+Tim Grannen: quite a few of those like. Obviously their customers revenue, but that supported that business.
+
+228
+00:31:34.540 --> 00:31:37.240
+Tim Grannen: So I got that traffic. But
+
+229
+00:31:37.900 --> 00:31:43.725
+Tim Grannen: yeah, I don't. I don't know. I don't have any other numbers in that, Ben, do you not have any stuff that you could dig into.
+
+230
+00:31:43.950 --> 00:31:49.681
+Ben Hulshult: I'm I might be able to dig into it. I don't have anything concrete right now, and I don't have access to production. So
+
+231
+00:31:50.280 --> 00:31:56.180
+Ben Hulshult: I don't know if I could even get those if I wanted to, but I don't have any any solid data.
+
+232
+00:31:58.030 --> 00:31:59.550
+Dillon Courts: Yeah, I mean, I would guess
+
+233
+00:31:59.960 --> 00:32:02.120
+Dillon Courts: I mean, it's doing tens of millions.
+
+234
+00:32:02.280 --> 00:32:03.280
+Ben Hulshult: A day.
+
+235
+00:32:04.140 --> 00:32:05.959
+Dillon Courts: Across all the sites.
+
+236
+00:32:06.510 --> 00:32:12.069
+Alexander Meyer: Oh, easily, I mean, just imagine Soldier Field on a game night. It I mean, it's insane.
+
+237
+00:32:12.470 --> 00:32:15.400
+Tim Grannen: You know, $20 per spot with, you know.
+
+238
+00:32:15.640 --> 00:32:17.600
+Tim Grannen: 20,000 cars or something like that.
+
+239
+00:32:18.610 --> 00:32:19.449
+Tim Grannen: It's a lot.
+
+240
+00:32:21.510 --> 00:32:22.489
+Dillon Courts: It's quite a bit.
+
+241
+00:32:22.790 --> 00:32:26.600
+Dillon Courts: Okay, let's see.
+
+242
+00:32:30.420 --> 00:32:36.680
+Dillon Courts: what do you guys think were the key factors that contributed to success? There.
+
+243
+00:32:43.330 --> 00:32:44.350
+Alexander Meyer: Good question.
+
+244
+00:32:44.660 --> 00:32:51.749
+Alexander Meyer: probably frankly, just their hands off nature. I mean, they had an architect that very much wanted things done his way, but at the same time.
+
+245
+00:32:52.130 --> 00:32:57.550
+Alexander Meyer: Once Key people got his trust, he might hand off a project to us.
+
+246
+00:32:57.880 --> 00:32:59.953
+Alexander Meyer: and just let us run with it.
+
+247
+00:33:00.250 --> 00:33:00.810
+Tim Grannen: Yeah.
+
+248
+00:33:00.930 --> 00:33:07.392
+Alexander Meyer: You know we were there enough. Obviously we've we built enough of their system that we we gained their trust absolutely.
+
+249
+00:33:08.620 --> 00:33:12.922
+Alexander Meyer: And there was just no roadblocks, really, I guess if you think about it.
+
+250
+00:33:14.320 --> 00:33:17.379
+Alexander Meyer: The iteration cycle felt real good.
+
+251
+00:33:17.928 --> 00:33:38.169
+Alexander Meyer: We we we've mentioned Sarah a little bit in this. I don't remember how good their framework was before she came on, but the automated framework alone caught a lot of issues before we released anything. And so it's like there was just inherent trust in the whole process, at least from our side.
+
+252
+00:33:39.590 --> 00:33:49.799
+Alexander Meyer: you know. True, Cicd, in some sense. I mean, we still had, I think, a click to deploy. That was like the last trust barrier that we couldn't break
+
+253
+00:33:51.450 --> 00:33:57.949
+Tim Grannen: Yeah, I I think trust is, is the answer. Like we gained their trust and and maintained it.
+
+254
+00:33:58.160 --> 00:34:13.459
+Tim Grannen: And without that, like they, they gave us a bunch of leeway to. Okay, we wanna design it this way to take advantage of this. Or we want to use this platform, or we wanna change our Csd. For this reason? No, they they did push back and wanted to make sure that they understood.
+
+255
+00:34:13.580 --> 00:34:20.420
+Tim Grannen: But they were fully trusting of our decisions and making sure that we're doing it the right way. But
+
+256
+00:34:20.750 --> 00:34:29.670
+Tim Grannen: they were they were along for the ride. So if there were more friction, I think we would have still delivered, but I don't know if we would have delivered on.
+
+257
+00:34:31.219 --> 00:34:35.762
+Alexander Meyer: I think Nick mentioned at 1 point the height we had like 12 people on this contract.
+
+258
+00:34:36.800 --> 00:34:46.619
+Alexander Meyer: I mean, there'd be whole feature sets that because we had so many people that you know we're doing code review, of course, but there'd be whole feature sets that in a mono developer never saw
+
+259
+00:34:47.650 --> 00:34:52.199
+Alexander Meyer: I mean just the back and forth that we would do with Pr reviews and pushing out. And
+
+260
+00:34:52.812 --> 00:35:03.447
+Alexander Meyer: I mean they still did A/C testing their own. They had physical. Qa. I don't know if that's been called out in this they did still have a physical Qa team. Everything had to go by them.
+
+261
+00:35:04.500 --> 00:35:07.998
+Alexander Meyer: but just the speed that we could get stuff into acceptance, testing
+
+262
+00:35:10.830 --> 00:35:16.699
+Nikolai Smirnov: The one. The one thing I would say I would call out is us stepping in to kind of help prioritize
+
+263
+00:35:16.990 --> 00:35:29.379
+Nikolai Smirnov: their features, and all of the work that needs to come down the pipeline. I believe. At 1 point we brought Josh Carter in to also help out with that the the one pain point that
+
+264
+00:35:29.490 --> 00:35:35.339
+Nikolai Smirnov: we faced both client and our teams faced was the
+
+265
+00:35:35.520 --> 00:35:42.720
+Nikolai Smirnov: shifting priorities. And that was primarily due to their top priorities being
+
+266
+00:35:43.800 --> 00:35:49.000
+Nikolai Smirnov: decided upon by the sales team without anyone else's kind of input
+
+267
+00:35:49.490 --> 00:35:56.749
+Nikolai Smirnov: so whenever they they had a big sale, they would just push that through, get the signature and ship it on out
+
+268
+00:35:56.920 --> 00:36:18.089
+Nikolai Smirnov: without checking with product and then Product would hear about it, find out that there was a bunch of new features that were kind of signed up for within the contract. And then those features became the new priorities, when there was already a full roadmap for next quarter to a year. So it was a continuous kind of fight and struggle.
+
+269
+00:36:18.880 --> 00:36:28.255
+Nikolai Smirnov: from the product side with the sales side. Which we we tried to help and manage. The I'm trying to remember his name.
+
+270
+00:36:28.880 --> 00:36:36.152
+Nikolai Smirnov: basically tried helping them manage that a little bit better where we really empowered the the
+
+271
+00:36:37.260 --> 00:36:48.190
+Nikolai Smirnov: product lead, I guess. So we can call him blanking his name at the moment. To basically have the sales and the key stakeholders make it. This.
+
+272
+00:36:50.130 --> 00:36:51.116
+Nikolai Smirnov: yeah, cansen?
+
+273
+00:36:53.660 --> 00:36:59.769
+Nikolai Smirnov: yeah, basically ensure that he was not just signing off on features left and right where he actually
+
+274
+00:37:00.010 --> 00:37:21.520
+Nikolai Smirnov: push back and said, Hey, we already have a full list. Something's come off before something else gets put on. That that was a really big struggle@firstst because it was kind of like drinking from a fire hose for several teams. Until we started kind of implementing some best practices just with product management basics. From that perspective.
+
+275
+00:37:24.470 --> 00:37:34.479
+Alexander Meyer: Yeah, I mean, they just trusted us with not only the code, but the process. As Nick said, I think when I 1st joined they were still doing like monolithic standups.
+
+276
+00:37:35.050 --> 00:38:00.094
+Alexander Meyer: It'd be like 30 people on a call that would take 45 min to get through we convinced them to split out into teams. As Tim mentioned, like we we wanted, I think, feature specific teams. We didn't get that. But at least we still got isolate. More isolated focused teams and those stand ups would overlap. And now they're taking 15 min. I mean, just the man hours saved alone. There
+
+277
+00:38:00.590 --> 00:38:02.829
+Alexander Meyer: is is amazing.
+
+278
+00:38:03.580 --> 00:38:06.330
+Nikolai Smirnov: Just some basic best practices with regards to
+
+279
+00:38:06.920 --> 00:38:18.349
+Nikolai Smirnov: I don't wanna say agile, I would say more of project management. You know, running efficient teams are inefficient. Stand ups. You know, efficient meetings across the board.
+
+280
+00:38:18.480 --> 00:38:27.810
+Nikolai Smirnov: and when you needed those monolithic meetings, make make sure you had the right people on them. Not every single person that does need to be in there.
+
+281
+00:38:30.040 --> 00:38:35.389
+Alexander Meyer: And and one thing that wasn't mentioned, too, that I think directly led to success was
+
+282
+00:38:36.160 --> 00:38:41.192
+Alexander Meyer: our our use of data monitoring and logging frameworks.
+
+283
+00:38:42.400 --> 00:38:59.469
+Alexander Meyer: I would assume it was just. It was mostly Tim and Cody. Everyone. Everyone read them. But Tim and Cody definitely created these logging dashboards that were immensely helpful for their deployments. And I mean, we did production support without
+
+284
+00:38:59.720 --> 00:39:04.379
+Alexander Meyer: technically even needing access to production because of these dashboards.
+
+285
+00:39:06.920 --> 00:39:08.440
+Alexander Meyer: I mean, there's just no.
+
+286
+00:39:08.900 --> 00:39:18.720
+Alexander Meyer: that's just another. I think. Pillar Stone of this project. I don't think you see the success we had without that type of monitoring that was created.
+
+287
+00:39:18.720 --> 00:39:26.809
+Tim Grannen: Yeah, with with the scale that they wanted to push all this stuff out like they needed a good monitoring suite, and that that helped them keep it under control.
+
+288
+00:39:26.990 --> 00:39:28.010
+Alexander Meyer: Yeah, I'm sure.
+
+289
+00:39:28.190 --> 00:39:37.660
+Tim Grannen: Like. They had several instances where they they had chosen to go with a monolithic database, so they only have one database, and they started to overload it.
+
+290
+00:39:37.930 --> 00:39:47.049
+Tim Grannen: So they had. They. They were able to identify that very easily, see the affecting queries that are taking forever and then isolate those put those on a replica
+
+291
+00:39:47.460 --> 00:39:51.940
+Tim Grannen: and do all that, they would have had no insight without those tools. We've been in place.
+
+292
+00:39:54.030 --> 00:39:57.969
+Dillon Courts: What did you guys put in place? Did you guys use? Okay, cool?
+
+293
+00:39:59.900 --> 00:40:08.110
+Dillon Courts: Alright. We've talked a lot about how like we perceived our impact there. How do you think the client would perceive our impact? There.
+
+294
+00:40:09.290 --> 00:40:17.049
+Alexander Meyer: I mean Ben's still there. I think that speaks to their trust in us. I mean, I don't think they wanna fully sever the connection, even if they don't
+
+295
+00:40:17.250 --> 00:40:22.569
+Alexander Meyer: want us to lead the project, because they know that we know their system.
+
+296
+00:40:24.170 --> 00:40:27.439
+Alexander Meyer: At least that's how I take it, Ben. What? What is the feeling today.
+
+297
+00:40:28.010 --> 00:40:37.289
+Ben Hulshult: Yeah, I think it's I think that's right. I think they they'd probably like to have more people on the project. They just can't get approval for it from higher up.
+
+298
+00:40:37.910 --> 00:40:45.460
+Ben Hulshult: it seems like it's coming down from Japan, or wherever that they want more in house, less contractor stuff. So
+
+299
+00:40:46.205 --> 00:40:51.694
+Ben Hulshult: I think she I think Karen's kind of fighting to keep at least me on, or you know,
+
+300
+00:40:52.300 --> 00:40:56.219
+Ben Hulshult: keep that connection with liberty. But they're gonna want to push back anymore.
+
+301
+00:40:56.550 --> 00:41:00.020
+Ben Hulshult: maybe because it's kind of a mature, more mature
+
+302
+00:41:00.130 --> 00:41:03.930
+Ben Hulshult: product. Now, they've you know, the the parent company feels like they don't really
+
+303
+00:41:04.420 --> 00:41:08.310
+Ben Hulshult: need to spend all the money for the for the contractors. But,
+
+304
+00:41:08.870 --> 00:41:12.749
+Ben Hulshult: it definitely feels like they, you know, a lot of people still want us there.
+
+305
+00:41:16.770 --> 00:41:20.530
+Alexander Meyer: I think, the fact alone that even even once they had
+
+306
+00:41:20.750 --> 00:41:23.339
+Alexander Meyer: more of their own developers than us.
+
+307
+00:41:23.570 --> 00:41:30.380
+Alexander Meyer: they still had. Tim leading team one. They had me leading team 3
+
+308
+00:41:30.660 --> 00:41:40.679
+Alexander Meyer: When they had plenty of their own people, they chose to still keep us as as guidance and leaders in their project, that they at that point wholly owned.
+
+309
+00:41:44.960 --> 00:41:52.990
+Dillon Courts: Great more question here. We talked a little bit about, like some unexpected
+
+310
+00:41:53.190 --> 00:42:06.190
+Dillon Courts: benefits or improvements that that we put in there right like one of them was, Tim ended up building the simulator for devices. Was there anything else that falls in that category that you feel like they didn't really contract us to do.
+
+311
+00:42:06.380 --> 00:42:12.010
+Dillon Courts: But at the end of the day, like we had a huge impact by doing something unexpected.
+
+312
+00:42:12.490 --> 00:42:18.450
+Nikolai Smirnov: From my end, I would say, changing their mindset on how they estimated and targeted
+
+313
+00:42:18.750 --> 00:42:40.419
+Nikolai Smirnov: feature and work completion. So, Karen, she she's been mentioned here. She she was kind of one of the leaders that we worked with and are still working with. I guess. Ben, speak that a little bit more but essentially what she was doing previously, when we 1st kind of started, was
+
+314
+00:42:40.620 --> 00:42:42.550
+Nikolai Smirnov: using the
+
+315
+00:42:42.740 --> 00:42:52.899
+Nikolai Smirnov: our estimates that were required by each develop Plugin into the stories. To run queries in, excel, to figure out how long
+
+316
+00:42:53.530 --> 00:42:58.199
+Nikolai Smirnov: all the stories within the feature would take to kind of target a set date
+
+317
+00:42:58.780 --> 00:43:04.340
+Nikolai Smirnov: that she would then feed to the upper leadership which would then approve or
+
+318
+00:43:04.470 --> 00:43:13.580
+Nikolai Smirnov: decline on approving specific budgets based on those targets. So working with her, and kind of changing her
+
+319
+00:43:14.270 --> 00:43:18.470
+Nikolai Smirnov: perspective of how to use those numbers and how to really.
+
+320
+00:43:18.700 --> 00:43:26.450
+Nikolai Smirnov: you know, engage with the team versus using the team's inputs to just make
+
+321
+00:43:26.900 --> 00:43:42.498
+Nikolai Smirnov: general estimates. That would probably be wrong most of the times. There was a lot of kind of coaching and mentoring that Josh and myself had to do with her. Just kind of get her out of the excel spreadsheets as we joked with her.
+
+322
+00:43:43.170 --> 00:43:46.260
+Nikolai Smirnov: so there was. There was a big impact from a
+
+323
+00:43:46.570 --> 00:43:56.070
+Nikolai Smirnov: project leadership perspective. And just kind of envisioning and and roadmapping from their mid-level leadership.
+
+324
+00:43:58.520 --> 00:44:02.689
+Alexander Meyer: I think the containerization of the project also led to
+
+325
+00:44:02.840 --> 00:44:12.580
+Alexander Meyer: kind of unforeseen successes. I don't know what all was discussed originally, but I mean before I joined the team. We didn't really have edge devices. We had
+
+326
+00:44:13.390 --> 00:44:19.305
+Alexander Meyer: the kiosk and everything was run on the kiosk but at least the kiosk.
+
+327
+00:44:20.850 --> 00:44:31.450
+Alexander Meyer: or no, it wasn't. We containerized all the microservices. So we kind of understood how this world already worked right. And once the ask of these edge devices came up.
+
+328
+00:44:32.110 --> 00:44:41.919
+Alexander Meyer: I actually think the door device was one of the sales commitments that came down. They needed a way for people to badge into parking garages.
+
+329
+00:44:42.450 --> 00:44:46.679
+Alexander Meyer: through their own system, using, you know, previous access groups.
+
+330
+00:44:47.493 --> 00:44:54.599
+Alexander Meyer: Because of our knowledge with containerization and everything. I think we were able to spin that up in like just a month
+
+331
+00:44:54.990 --> 00:45:08.629
+Alexander Meyer: from a concept to a fully fledged product given. Now you're on Raspberry Pi's. So your manufacturing costs are a little bit higher, but your your speed to manufacturing is is
+
+332
+00:45:08.840 --> 00:45:11.709
+Alexander Meyer: nonexistent right? Because these are over the shelf.
+
+333
+00:45:12.254 --> 00:45:25.190
+Alexander Meyer: So given a raspberry pi. Given a containerized docker implementation, you know, we're able to hook up and create literally a badge in system to hook up to any door
+
+334
+00:45:25.320 --> 00:45:28.970
+Alexander Meyer: in under a month very similar.
+
+335
+00:45:29.340 --> 00:45:33.839
+Tim Grannen: And they did the their original initiative on that was to have everything containerized.
+
+336
+00:45:34.291 --> 00:45:38.960
+Tim Grannen: They settled to not do it and do the bare metal, 1st because it was easier.
+
+337
+00:45:39.740 --> 00:45:45.750
+Tim Grannen: Then getting the hurdles we had to take over eventually. One of the things I we did add that
+
+338
+00:45:45.950 --> 00:45:51.539
+Tim Grannen: they didn't necessarily ask for. Is there something we improved? Was the use of Cqrs pattern?
+
+339
+00:45:51.973 --> 00:45:59.859
+Tim Grannen: Inside the the Api code itself, and Alex and Ben can say whether or not that was actually useful. I kind of spearheaded that one
+
+340
+00:46:00.303 --> 00:46:08.509
+Tim Grannen: but they there some of the stuff they had built by the time I got there after a year or so, was getting pretty spaghetti code again.
+
+341
+00:46:08.650 --> 00:46:20.060
+Tim Grannen: and so we looked for other approaches to make it more isolated to like if I had this Api. This is the code gets that gets executed mitigating the risk of.
+
+342
+00:46:20.270 --> 00:46:32.590
+Tim Grannen: If I make this one change over here, it's going to affect 10 Api. Now, it's more like, I know I'm changing this Api and this Api only, and using a different code pattern, allowed that to happen and mitigate that risk.
+
+343
+00:46:34.470 --> 00:46:38.929
+Tim Grannen: So I don't know if you guys agree with that. It was a a win, but I think.
+
+344
+00:46:38.930 --> 00:46:42.570
+Alexander Meyer: Totally I mean it. It also enabled widespread unit testing.
+
+345
+00:46:42.840 --> 00:46:44.020
+Alexander Meyer: I mean.
+
+346
+00:46:45.486 --> 00:46:54.139
+Alexander Meyer: I don't know. Say what you want about Cqrs, but I mean, in this instance we were able to decouple multiple layers of this. This.
+
+347
+00:46:54.380 --> 00:46:59.169
+Alexander Meyer: you know, it was microservices, but some of these services were massive.
+
+348
+00:46:59.758 --> 00:47:21.099
+Alexander Meyer: absolutely massive. They could be considered monoliths on their own. We're, you know, we're able to isolate each layer of it and unit testing end to end, you might say, oh, that's integration testing. No, I'm I mean unit, test every single piece of it. Isolated, totally decoupled, but still like getting close to 100 coverage and being meaning meaningful coverage.
+
+349
+00:47:21.470 --> 00:47:23.839
+Alexander Meyer: was pretty, impressive.
+
+350
+00:47:26.820 --> 00:47:33.700
+Dillon Courts: And Cqrs is just the concept of separating, read from write patterns, correct.
+
+351
+00:47:34.010 --> 00:47:34.790
+Tim Grannen: Yeah, we.
+
+352
+00:47:34.790 --> 00:47:35.410
+Dillon Courts: Cloud.
+
+353
+00:47:35.580 --> 00:47:54.849
+Tim Grannen: We kind of label that as just like the the approach that we took it was more structured around the code rather than like separating out like Apis or artifacts or deployment instances to do separate operations. It was more that if I have this one Api, I have that segregated responsibility.
+
+354
+00:47:54.970 --> 00:48:02.459
+Tim Grannen: and that's going to be a command where it takes an action and actually changes state of the system, or a query that just does a read operation.
+
+355
+00:48:02.670 --> 00:48:04.619
+Tim Grannen: And so we kind of just broke it down at that level.
+
+356
+00:48:04.960 --> 00:48:14.300
+Alexander Meyer: Gotcha, and that was more for code structure and clarity than it was to address some kind of performance issue with a heavy read or a heavy right system
+
+357
+00:48:14.300 --> 00:48:40.509
+Alexander Meyer: unforeseen wins. I mean that directly helped us solve like that database issue later, because we were once we realized we needed a replica. For some of these reads, it was beyond easy to say, Okay, these queries in our in our Apis. They need to go to the read replica, and because that whole flow was isolated, I mean, it was basically a configuration switch at that point.
+
+358
+00:48:41.310 --> 00:48:41.940
+Dillon Courts: Awesome.
+
+359
+00:48:44.980 --> 00:48:53.380
+Dillon Courts: Alright. Last question, my favorite one. Any lessons learned or best practices that you guys feel like you could identify
+
+360
+00:48:53.580 --> 00:48:55.050
+Dillon Courts: that we could apply in the future.
+
+361
+00:49:03.780 --> 00:49:05.880
+Nikolai Smirnov: Document, document and document
+
+362
+00:49:08.576 --> 00:49:22.860
+Nikolai Smirnov: just with the shifting priorities. That we already talked about. Having us document some of the previous conversations and bringing them back up to light when priorities changed helped really quickly kind of
+
+363
+00:49:24.200 --> 00:49:30.590
+Nikolai Smirnov: make decisions and or keep the team away from some of the
+
+364
+00:49:30.730 --> 00:49:33.300
+Nikolai Smirnov: the mess that was going on behind the scenes.
+
+365
+00:49:33.829 --> 00:49:40.119
+Nikolai Smirnov: With regards to what the team should be focusing around multiple teams. In fact.
+
+366
+00:49:41.820 --> 00:49:43.899
+Tim Grannen: You know I would. Oh, go ahead.
+
+367
+00:49:44.934 --> 00:49:48.660
+Tim Grannen: I was gonna add, really
+
+368
+00:49:50.540 --> 00:50:02.060
+Tim Grannen: I think, simplifying the architecture upfront like don't over engineer and follow certain patterns just because you want to follow them. I think if we had kind of had a more simple
+
+369
+00:50:02.170 --> 00:50:10.040
+Tim Grannen: architecture at the beginning, and then kind of deviated into what we needed to build at the end of the day would have helped us over long run.
+
+370
+00:50:10.440 --> 00:50:22.259
+Tim Grannen: You know, we we did run into issues where we had to run the entire cloud back end on one machine just to like test a feature. And you'd spin up 12 containers of just custom code.
+
+371
+00:50:22.420 --> 00:50:27.989
+Tim Grannen: and that was very hard to do on a developer machine sometimes with how they ran. So
+
+372
+00:50:28.484 --> 00:50:39.190
+Tim Grannen: if we had started more simplistic and then kind of gotten into the okay. This needs to be its own micro service. This needs to have this, you know, isolated complexity. Over here.
+
+373
+00:50:39.330 --> 00:50:41.689
+Tim Grannen: We could have kind of
+
+374
+00:50:41.890 --> 00:50:52.350
+Tim Grannen: found our way into working with our team structure a little better. The the biggest issue they had, I think, was their team structure and their team structure, not matching how the underlying architecture fit.
+
+375
+00:50:53.033 --> 00:50:57.029
+Tim Grannen: That just made it harder for developers to get features complete.
+
+376
+00:50:57.210 --> 00:51:03.310
+Tim Grannen: So if they had started simpler, I think they would have evolved more naturally into what the end
+
+377
+00:51:03.470 --> 00:51:06.950
+Tim Grannen: architecture needed to be rather than what they decided on at the beginning.
+
+378
+00:51:08.480 --> 00:51:16.910
+Alexander Meyer: I would also say at this point, and I mean, I've I've read a lot about a mic about micro services since leaving that contract, too.
+
+379
+00:51:17.150 --> 00:51:18.680
+Alexander Meyer: I mean, have a reason
+
+380
+00:51:18.860 --> 00:51:24.509
+Alexander Meyer: for your individual services as well. Don't just do it just because it's what you're already doing.
+
+381
+00:51:24.630 --> 00:51:36.950
+Alexander Meyer: and when you do do it commit to it. I mean, Tim mentioned, we still had a single database instance. That caused a lot of issues right like it is microservices. But you still have a single point of failure.
+
+382
+00:51:38.570 --> 00:51:56.387
+Alexander Meyer: And we saw that right? Like, we talked about how they had a huge database problem. We were hitting some limits on the database and it brings everything down. So in that sense you don't even need a status page for your different services, because in essence they're all the same service. If your database goes down, all of them go down
+
+383
+00:51:56.830 --> 00:52:02.701
+Alexander Meyer: so have a reason for it. Understand why, and stick to it. Don't just do it to do it.
+
+384
+00:52:03.950 --> 00:52:17.810
+Alexander Meyer: yeah. Even Tim's point. Still, like local development, while we eventually figured out a decent pattern to do it. We still saw like issues later on. I mean, there's so many docker images to pull down
+
+385
+00:52:18.440 --> 00:52:39.029
+Alexander Meyer: in today's day and age. You think that's not a problem. But it depends. If you're at a coffee shop, their firewall might stop you, and it did me a few times. I wasn't able to pull down certain docker images because we were polling too fast. And that's not something I could control. That was through docker desktop.
+
+386
+00:52:39.750 --> 00:52:43.649
+Alexander Meyer: So it's it proved to be some interesting problems. But
+
+387
+00:52:45.160 --> 00:52:59.150
+Tim Grannen: Yeah. And there to go back on like their single point of failure that they could have improved when they did have those database issues that impacted every customer and the customers of their customers.
+
+388
+00:52:59.340 --> 00:53:22.269
+Tim Grannen: So because of the devices interacting with our Apis that were interacting with one database, we started to see issues with that database. People couldn't leave garages. They were stuck there. The gates would not open, and the fact that the gates couldn't open. They they had a feature where they could manually toggle a gate, but you had to log into the web portal to see that, and then to send the command to the device.
+
+389
+00:53:22.390 --> 00:53:24.979
+Tim Grannen: and you had to have access to the database to log in.
+
+390
+00:53:25.290 --> 00:53:26.429
+Tim Grannen: And so
+
+391
+00:53:26.530 --> 00:53:33.500
+Tim Grannen: that single point of failure almost got them in big trouble like it a couple of times. It was a pretty big issue.
+
+392
+00:53:33.942 --> 00:53:37.600
+Tim Grannen: Now they've they're more careful with it now. But they still
+
+393
+00:53:37.790 --> 00:53:47.690
+Tim Grannen: didn't choose to isolate those like business functions and areas that needed to be isolated to for success, that well, so that can be improved.
+
+394
+00:53:47.980 --> 00:53:59.780
+Alexander Meyer: Yeah. And I I don't know if I would call this a lesson learned, but maybe newfound respect. Like queuing infrastructures. I think this was a very interesting project where
+
+395
+00:54:00.210 --> 00:54:13.129
+Alexander Meyer: it is such a great application of it. Because the the turnaround time to get someone out of a garage or in needs to be as minimal as possible. Right? You have lines of cars.
+
+396
+00:54:13.560 --> 00:54:29.000
+Alexander Meyer: These things are running on Wi-fi, let alone that the Internet could go down. But you still need to let people in and out of the garage. So it's an absolute requirement that we'd be able to queue up these requests. Because it's also physical dollars. Right?
+
+397
+00:54:29.200 --> 00:54:38.836
+Alexander Meyer: Like, we need to still operate when there's a spotty connection, we still need to let someone out of the garage. We still need to accept cash from people as they leave the garage
+
+398
+00:54:39.230 --> 00:54:42.599
+Alexander Meyer: But then, maybe need to queue that up to process later.
+
+399
+00:54:44.980 --> 00:54:55.076
+Alexander Meyer: I don't even think I'd I'd I've done a scalable like wide distributed queuing framework before this project. And it was fairly complicated.
+
+400
+00:54:56.470 --> 00:55:00.960
+Dillon Courts: We didn't really talk about that at all. You guys solved for that with what? How'd you guys do your queuing.
+
+401
+00:55:01.630 --> 00:55:30.630
+Tim Grannen: So we originally they implemented all their queuing inside of Kafka. They had a self hosted, managed Kafka instance inside of their Kubernetes cluster and we did everything in Kafka. However, we ended up finding that they didn't have any resilience patterns when they were consuming Kafka messages. And so every once in a while they drop some messages, including payments and ticket creations and that sort of thing. So we pivoted and switched to Sqs and aws.
+
+402
+00:55:30.780 --> 00:55:46.150
+Tim Grannen: So all of their absolutely guaranteed messages that had to be delivered went through Sqs and not through Kafka. Kafka was then transitioned for things that weren't moved yet that weren't super critical. And their real time device updates. So they were fast.
+
+403
+00:55:49.470 --> 00:56:04.169
+Tim Grannen: But yeah, they they had a big problem in the in the middle, there where they every once in a while they get reports from the field that a ticket didn't exist, and it's because that particular message had some database error when it was trying to process, and they just logged it and moved on.
+
+404
+00:56:04.430 --> 00:56:11.499
+Tim Grannen: and they never process again. So adding Sqs. Allowed us to dead letter queue, and do all those patterns to make sure it worked.
+
+405
+00:56:13.190 --> 00:56:13.880
+Dillon Courts: Awesome.
+
+406
+00:56:14.890 --> 00:56:18.850
+Alexander Meyer: Let alone. We still had to do local manual queuing.
+
+407
+00:56:19.418 --> 00:56:30.539
+Alexander Meyer: Because, again, if the Internet's down, it's not hitting aws sqs, like we still needed to have a queue of messages literally on the device before sending the Sqs. As well.
+
+408
+00:56:30.540 --> 00:56:41.330
+Tim Grannen: Yeah. And there was. There was some of that. Usually it's the like getting people into the garages where they did that when they were leaving. They wanted to make sure that they paid where they left.
+
+409
+00:56:41.440 --> 00:56:46.260
+Tim Grannen: And so that was like a network call that had to happen. Other stuff was in the background like
+
+410
+00:56:46.540 --> 00:56:50.620
+Tim Grannen: tickets and stuff. They they persisted on disk and send it up to cloud.
+
+411
+00:56:50.970 --> 00:56:53.639
+Dillon Courts: What happened if you're trying to leave the networks down.
+
+412
+00:56:54.040 --> 00:56:55.620
+Tim Grannen: You're not leaving.
+
+413
+00:56:55.800 --> 00:56:56.700
+Dillon Courts: Really.
+
+414
+00:56:56.700 --> 00:57:02.149
+Tim Grannen: Yeah, okay. I didn't know. Maybe they would try to queue up a payment call or something.
+
+415
+00:57:02.150 --> 00:57:14.359
+Tim Grannen: No, the problem was, is, their rates were not calculated on device, they were calculated in cloud. So if you came up and scanned a ticket, even though if you had the whole rate structure that the big object
+
+416
+00:57:14.510 --> 00:57:17.630
+Tim Grannen: there, you couldn't calculate it. The server had to calculate it.
+
+417
+00:57:18.150 --> 00:57:26.160
+Tim Grannen: So that was one of it. And and this is a takeaway for mono that they're their business
+
+418
+00:57:26.820 --> 00:57:31.259
+Tim Grannen: stance that they took of you always have to be on, for this platform
+
+419
+00:57:31.370 --> 00:57:42.919
+Tim Grannen: was probably not a great one. I know at the end, at least, when I was leaving, I think they were getting some competitors with similar platforms that did not have that requirement where they would catch up requests locally
+
+420
+00:57:43.090 --> 00:57:49.100
+Tim Grannen: and and do that. So they, I mean, a mono did have issues when the network went down and the Internet went down in a facility.
+
+421
+00:57:49.320 --> 00:57:50.809
+Tim Grannen: We're kind of dead in the water.
+
+422
+00:57:50.930 --> 00:57:56.019
+Tim Grannen: They couldn't interact with devices. They couldn't do anything. So it was, it was an issue.
+
+423
+00:57:57.270 --> 00:58:00.540
+Alexander Meyer: Oh, gosh! Newfound disrespect for time zones, too.
+
+424
+00:58:00.980 --> 00:58:08.810
+Alexander Meyer: We generally handled it fine. I can't remember the specific issue, but there was an edge case with daylight savings time.
+
+425
+00:58:09.100 --> 00:58:19.620
+Alexander Meyer: and if you had, I think, a rate created in daylight savings time, but then tried to process it. Outside of daylight savings time.
+
+426
+00:58:19.780 --> 00:58:22.539
+Alexander Meyer: There was a 1 h window during
+
+427
+00:58:22.880 --> 00:58:34.160
+Alexander Meyer: every day where you could get like effectively a ticket for 24 h instead of like maybe your 2 h. Stay, holy Moly! That was a mess.
+
+428
+00:58:34.650 --> 00:58:40.182
+Alexander Meyer: We still did everything in Utc, which is what was frustrating, because it's like we're doing everything right.
+
+429
+00:58:40.850 --> 00:58:45.150
+Alexander Meyer: but you still had to save off, I think, like the original offset.
+
+430
+00:58:45.390 --> 00:58:47.869
+Alexander Meyer: which is what we had to go back through and refactor.
+
+431
+00:58:48.990 --> 00:58:51.949
+Tim Grannen: Yeah. And that was just for their rate calculation processing.
+
+432
+00:58:55.500 --> 00:59:01.240
+Dillon Courts: Okay, I know we're at time anything else you all want to say before we stop the recording.
+
+433
+00:59:05.500 --> 00:59:06.170
+Dillon Courts: let me stop.
+
+434
+00:59:06.170 --> 00:59:07.629
+Alexander Meyer: Physical hardware was fun.
+
