@@ -27,7 +27,7 @@ public class IngestionService implements CommandLineRunner {
     private final VectorStore vectorStore;
     private final ResourceLoader resourceLoader;
 
-    @Value("classpath:/docs")
+    @Value("src/main/resources/docs")
     private Resource docsFolder;
 
     public IngestionService(VectorStore vectorStore, ResourceLoader resourceLoader) {
@@ -46,12 +46,13 @@ public class IngestionService implements CommandLineRunner {
     }
 
     private List<Resource> listFiles(Resource folder) throws IOException {
-        File directory = folder.getFile();
-        if (!directory.exists() || !directory.isDirectory()) {
+
+        File docsDir = new File("./src/main/resources/docs");
+        if (!docsDir.exists() || !docsDir.isDirectory()) {
             return List.of();
         }
 
-        try (Stream<Path> paths = Files.walk(directory.toPath())) {
+        try (Stream<Path> paths = Files.walk(docsDir.toPath())) {
             return paths.filter(Files::isRegularFile)
                     .map(Path::toFile)
                     .map(file -> resourceLoader.getResource("file:" + file.getAbsolutePath()))
@@ -63,8 +64,28 @@ public class IngestionService implements CommandLineRunner {
         try {
             TikaDocumentReader documentReader = new TikaDocumentReader(file);
             List<Document> documents = documentReader.get();
-            List<Document> splitDocuments = new TokenTextSplitter().apply(documents);
+
+            // Add metadata to each document
+            List<Document> documentsWithMetadata = documents.stream().map(doc -> {
+                doc.getMetadata().put("filename", file.getFilename());
+                try {
+                    doc.getMetadata().put("filepath", file.getFile().getAbsolutePath());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                doc.getMetadata().put("source", "document");
+                doc.getMetadata().put("ingested_at", String.valueOf(System.currentTimeMillis()));
+                return doc;
+            }).collect(Collectors.toList());
+
+            // Split the documents into smaller chunks
+            List<Document> splitDocuments = new TokenTextSplitter().apply(documentsWithMetadata);
+
+            // Store embeddings along with metadata
             vectorStore.add(splitDocuments);
+
+            log.info("Successfully uploaded: " + file.getFilename());
+
         } catch (Exception e) {
             log.error("Failed to process file: " + file.getFilename(), e);
         }
